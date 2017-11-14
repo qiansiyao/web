@@ -1,0 +1,97 @@
+<div class="previewpic col-xs-6 no-padding">
+
+     <span class="ver-top">小图</span>
+
+     <div style="display: inline-block;width: 70%;">
+
+       <div style="position: relative;">
+
+          <div class="bbb" style="display: inline-block;">
+
+            <img class="newimg" src="${webrespath}/images/icon_default.png" id="imgimg" alt="" />
+
+          </div>
+
+          <div class="upload" style="display: inline-block;">
+
+              <input type="file" id="img" name="img" style="">
+
+              <span></span>//必须添加一个空的div，为了实现ie10、ie9下清空input value值
+
+          </div>
+      </div>
+
+       <em class="gray">仅支持JPG、JPEG、GIF、PNG格式的图片文件！</em>
+   </div>
+ </div>
+
+<script>
+//删除图片
+
+  $('.close_btn').on('click',function(e) {
+          e.preventDefault();
+
+          var canpic = $(this);
+
+          layer.confirm('是否确认删除?', {
+
+                  btn: ['确认', '取消'] //按钮
+          },
+
+          function(index) {
+
+                  var indexshow = layer.load(1, {
+
+                       shade: [0.1,'#000'] //0.1透明度的白色背景
+
+                  });
+
+                  layer.close(index);
+
+                  layer.close(indexshow);
+
+                  canpic.parent().parent().css("filter","");//ie8清空内容
+
+                  canpic.parent().parent().find('img').css('display','block');//ie8显示默认图片
+
+                  canpic.parent().parent().next().find('input').css('height','120px');
+
+                  canpic.parent().parent().next().find('input').css('top','0');
+
+                  clearInputFile(canpic);    //ie9 ie10下清空input的value值
+
+                  function clearInputFile(canpic){ //清空value的值，复制一个input，利用form的reset方法重置
+
+                            var f1= canpic.parent().parent().next().find('input').attr('id');//得到input的id
+
+                            var f = document.getElementById(f1);
+
+                            var form = document.createElement('form'), ref = f.nextSibling;
+
+                            form.appendChild(f);
+
+                            form.reset();
+
+                            ref.parentNode.insertBefore(f,ref);
+
+                   }
+
+                      canpic.parent().parent().find('.edit').innerHTML='';//ie8的remove方法
+
+                      canpic.parent().parent().find('.edit').remove();
+
+                      canpic.parent().parent().find('.del').innerHTML='';//ie8的remove方法
+
+                      canpic.parent().parent().find('.del').remove();
+
+               },
+
+               function() {
+
+                     //FAIL TODO
+
+               });
+
+     });
+
+</script>
