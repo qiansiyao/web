@@ -1,0 +1,19 @@
+使用video、object标签，需要swf格式的视频。引入控件css和js，此样式播放进度条嵌在窗口里面。
+<video id="example_video1" class="video-js vjs-default-skin vjs-big-play-centered" controls                           preload="none"               
+          poster="${webpath}/content/images/icon_video2.png"    //初始显示的图片
+          data-setup="{}" width="1010px" height="333px">
+               //各种格式
+               <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
+               <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm' />
+               <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg' />
+              //兼容ie8
+               <object type="application/x-shockwave-flash" id="flash_fallback_1" class="vjs-flash-fallback"  data="http://static.youku.com/v1.0.0630/v/swf/loader.swf" width="1010px" height="333px">
+                   //swf格式
+                   <param name="movie" value="http://static.youku.com/v1.0.0630/v/swf/loader.swf" />     
+                   <param name="allowFullScreen" value="true" />
+                   <param name="wmode" value="transparent" />
+                   <param name="flashvars" value="VideoIDS=XMTYxMzg0MjA1Mg==&amp;">
+                   <!-- fallback image if flash fails -->
+                     <img src="${webpath}/content/images/icon_video2.png" width="1010px" height="333px" title="No Flash found" />
+              </object>
+</video>
